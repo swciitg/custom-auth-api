@@ -8,7 +8,6 @@ PWD = os.path.dirname(os.path.abspath(__file__))
 setting_filepath = os.path.join(PWD, 'oauth_settings.yml')
 stream = open(setting_filepath, 'r')
 settings = yaml.load(stream, yaml.SafeLoader)
-print(">>>>>>>>>>>>>>>>>>>>>>>>", type(settings['scopes']))
 
 def load_cache(request):
   # Check for a token cache in the session

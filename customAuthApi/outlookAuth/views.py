@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 from .auth_helper import get_sign_in_flow, get_token_from_code, store_user, remove_user_and_token, get_token
 from .graph_helper import *
@@ -10,9 +10,9 @@ def initialize_context(request):
 
   # Check for any errors in the session
   error = request.session.pop('flash_error', None)
+  context['errors'] = []
 
   if error != None:
-    context['errors'] = []
     context['errors'].append(error)
 
   # Check for user in the session
@@ -22,13 +22,21 @@ def initialize_context(request):
 def home(request):
 
   context = initialize_context(request)
+
   if(context['user']):
     return JsonResponse({
-        'message': 'You have been successfully authenticated'
-    }, status=200)      
-  return JsonResponse({
-      'message': 'authentication failed!'
-  }, status=404)
+        'message': 'You have been successfully authenticated',
+        'user details': context['user']
+    }, status=200)
+    
+  elif len(context['errors']) > 0:
+    return JsonResponse({
+        'message': 'authentication failed!',
+        'errors': context['errors']
+    }, status=404)
+  
+  else:
+    return redirect('signin')
 
 def sign_in(request):
   # Get the sign-in flow

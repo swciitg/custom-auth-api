@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('outlook/', include('outlookAuth.urls')),
+    path('auth/', include([
+        path('admin/', admin.site.urls),
+        path('outlook/', include('outlookAuth.urls')),
+    ]))
 ]
