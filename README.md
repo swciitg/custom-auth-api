@@ -7,7 +7,7 @@ Please keep the secret keys discreet and put them in a separate file and add tha
 ## Steps to test the outlook oauth service
 * cd to root directory - containing requirements.txt file
 * run ```python -m venv .venv``` (for windows) ```python3 -m venv .venv``` (for Linux)
-* activate the virtualenv --> `https://python.land/virtual-environments/virtualenv`
+* activate the virtualenv --> [check here](https://python.land/virtual-environments/virtualenv)
 * run ```pip install -r requirements.txt``` 
 * cd to customAuthApi directory (contains 2 other directories - customAuthApi and outlookAuth)
 * run ```python / python3 manage.py runserver```
