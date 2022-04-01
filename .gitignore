@@ -121,6 +121,5 @@ media/
 # !**/migrations/__init__.py
 
 
-**assets/**
 data.csv
 oauth_settings.yml
