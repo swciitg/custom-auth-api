@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  web:
+    build:
+        context: .
+    ports:
+      - 8020:8000
+    command: sh -c /code/entrypoint.prod
+    restart: always
+    volumes:
+            - "./assets:/code/assets"
+    env_file:
+        - ./.env
+
+
